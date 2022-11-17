@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:counter_7/form.dart';
+import 'package:counter_7/data.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,14 +18,14 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Program Counter'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-  final String title;
+  const MyHomePage({super.key});
+  final String title = 'Program Counter';
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -44,12 +46,15 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  oddOrEven(){
-    if(_counter % 2 == 0){
-      return  Text("GENAP", style: GoogleFonts.pridi(textStyle: const TextStyle(fontSize: 50, color: Colors.red)));
-    }
-    else{
-      return  Text("GANJIL", style: GoogleFonts.pridi(textStyle: const TextStyle(fontSize: 50, color: Colors.blue)));
+  oddOrEven() {
+    if (_counter % 2 == 0) {
+      return Text("GENAP",
+          style: GoogleFonts.pridi(
+              textStyle: const TextStyle(fontSize: 50, color: Colors.red)));
+    } else {
+      return Text("GANJIL",
+          style: GoogleFonts.pridi(
+              textStyle: const TextStyle(fontSize: 50, color: Colors.blue)));
     }
   }
 
@@ -59,8 +64,45 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+
+      drawer: Drawer(
+        child: Column(
+          children: [
+            ListTile(
+              title: const Text("counter_7"),
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyHomePage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Tambah Budget'),
+              onTap: () {
+                // Route menu ke halaman form
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyFormPage()),
+                );
+              },
+            ),
+            ListTile(
+              title: const Text('Data Budget'),
+              onTap: () {
+                // Route menu ke halaman form
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const MyDataPage()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+
       body: Center(
-        child: Column( 
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             oddOrEven(),
@@ -72,26 +114,23 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: Padding(
-        padding : const EdgeInsets.only(right: 5.0, left: 35.0, bottom: 15.0),
+        padding: const EdgeInsets.only(right: 5.0, left: 35.0, bottom: 15.0),
         child: Row(
-
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-
-            if(_counter > 0)
+            if (_counter > 0)
+              FloatingActionButton(
+                onPressed: _decrementCounter,
+                tooltip: 'Decrement',
+                child: const Icon(Icons.remove),
+              ),
             FloatingActionButton(
-            onPressed: _decrementCounter,
-            tooltip: 'Decrement',
-            child: const Icon(Icons.remove),
+              onPressed: _incrementCounter,
+              tooltip: 'Increment',
+              child: const Icon(Icons.add),
             ),
-
-            FloatingActionButton(
-            onPressed: _incrementCounter,
-            tooltip: 'Increment',
-            child: const Icon(Icons.add),
-            ), 
           ],
-        ), 
+        ),
       ),
       // This trailing comma makes auto-formatting nicer for build methods.
     );
