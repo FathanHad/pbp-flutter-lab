@@ -92,14 +92,14 @@ Navigator.pushReplacement juga digunakan untuk menambahkan route lain, tetapi me
 
 untuk lebih detailnya dapat cek [disini](https://www.technicalfeeder.com/2021/11/flutter-page-transition/)
 
-## Sebutkan widget yang dipakai pada tugas ini
+## Sebutkan widget yang dipakai pada tugas ini dan jelaskan fungsinya
 
 Kurang lebih sama seperti tugas 7, beberapa tambahan widget baru seperti:
 
-- `Drawer()`
-- `ListTile()`
-- `DropdownButton()`
-- `Navigator()`
+- `Drawer()` berfungsi sebagai navigasi untuk berpindah ke page lain
+- `ListTile()` berfungsi sebagai container
+- `DropdownButton()` berfungsi untuk menampilkan menu dropdown untuk jenis pengisian form
+- `TextFormField` berfungsi sebagai kolom submisi dengan format text dalam form
 - dll
 
 ## Sebutkan jenis event yang ada pada flutter
