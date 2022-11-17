@@ -1,3 +1,4 @@
+import 'package:counter_7/drawer.dart';
 import 'package:counter_7/main.dart';
 import 'package:flutter/material.dart';
 import 'package:counter_7/form.dart';
@@ -17,41 +18,7 @@ class _MyDataPageState extends State<MyDataPage> {
         appBar: AppBar(
           title: Text('Data Budget'),
         ),
-        drawer: Drawer(
-          child: Column(
-            children: [
-              ListTile(
-                title: const Text("counter_7"),
-                onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyHomePage()),
-                  );
-                },
-              ),
-              ListTile(
-                title: const Text('Tambah Budget'),
-                onTap: () {
-                  // Route menu ke halaman form
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyFormPage()),
-                  );
-                },
-              ),
-              ListTile(
-                title: const Text('Data Budget'),
-                onTap: () {
-                  // Route menu ke halaman form
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyDataPage()),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
+        drawer: Hamburger(),
         body: ListView.builder(
             itemCount: Tampil.Contain.length,
             itemBuilder: (context, index) {
@@ -62,7 +29,8 @@ class _MyDataPageState extends State<MyDataPage> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(item.nominal.toString(), style: GoogleFonts.pridi(fontSize: 20)),
-                      Text(item.jenis, style: GoogleFonts.pridi(fontSize: 20))
+                      Text("Tanggal : "+item.tanggal.toString().substring(0,10), style: GoogleFonts.pridi(fontSize: 20)),
+                      Text(item.jenis, style: GoogleFonts.pridi(fontSize: 20)), 
                     ]),
               );
             }));

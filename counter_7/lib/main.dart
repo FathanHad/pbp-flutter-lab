@@ -1,3 +1,4 @@
+import 'package:counter_7/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:counter_7/form.dart';
@@ -65,42 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
 
-      drawer: Drawer(
-        child: Column(
-          children: [
-            ListTile(
-              title: const Text("counter_7"),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Tambah Budget'),
-              onTap: () {
-                // Route menu ke halaman form
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyFormPage()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Data Budget'),
-              onTap: () {
-                // Route menu ke halaman form
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyDataPage()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
-
+      drawer: Hamburger(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

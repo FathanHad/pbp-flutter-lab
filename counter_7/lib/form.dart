@@ -1,16 +1,17 @@
+import 'package:counter_7/drawer.dart';
 import 'package:counter_7/main.dart';
 import 'package:flutter/material.dart';
 import 'package:counter_7/data.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 class Budget {
   String namaJudul;
   int nominal;
   String jenis;
+  DateTime tanggal;
 
-  Budget(this.namaJudul, this.nominal, this.jenis);
+  Budget(this.namaJudul, this.nominal, this.jenis, this.tanggal);
 }
 
 class Tampil {
@@ -30,6 +31,7 @@ class _MyFormPageState extends State<MyFormPage> {
   int nominal = 0;
   String jenis = 'Pemasukan';
   List<String> listJenis = ['Pemasukan', 'Pengeluaran'];
+  DateTime tanggal = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -37,41 +39,7 @@ class _MyFormPageState extends State<MyFormPage> {
       appBar: AppBar(
         title: Text('Form Budget'),
       ),
-      drawer: Drawer(
-        child: Column(
-          children: [
-            ListTile(
-              title: const Text("counter_7"),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyHomePage()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Tambah Budget'),
-              onTap: () {
-                // Route menu ke halaman form
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyFormPage()),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Data Budget'),
-              onTap: () {
-                // Route menu ke halaman form
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => const MyDataPage()),
-                );
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: Hamburger(),
       body: Form(
         key: _formKey,
         child: SingleChildScrollView(
@@ -167,7 +135,33 @@ class _MyFormPageState extends State<MyFormPage> {
                   ),
                 ),
                 Padding(
-                    padding: const EdgeInsets.only(top: 400),
+                  padding: const EdgeInsets.only(top: 50),
+                  child: OutlinedButton.icon(
+                      onPressed: () {
+                        showDatePicker(
+                                context: context,
+                                initialDate: tanggal,
+                                firstDate: DateTime(1945),
+                                lastDate: DateTime(2077))
+                            .then((selectedDate) {
+                          setState(() {
+                            if (selectedDate != null) {
+                              tanggal = selectedDate;
+                            }
+                          });
+                        });
+                      },
+                      style: ButtonStyle(
+                          shape:
+                              MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ))),
+                      icon: const Icon(Icons.date_range),
+                      label: const Text("Pilih Tanggal")),
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(top: 350),
                     child: SizedBox(
                       height: 40,
                       width: 85,
@@ -195,21 +189,25 @@ class _MyFormPageState extends State<MyFormPage> {
                                       shrinkWrap: true,
                                       children: <Widget>[
                                         Center(
-                                            child:  Text(
-                                                'Berhasil Menambahkan Data !!', style: GoogleFonts.pridi(fontSize: 27))),
+                                            child: Text(
+                                                'Berhasil Menambahkan Data !!',
+                                                style: GoogleFonts.pridi(
+                                                    fontSize: 27))),
                                         SizedBox(height: 40),
                                         TextButton(
                                           onPressed: () {
                                             Navigator.pop(context);
                                           },
-                                          child:  Text("Kembali", style: GoogleFonts.pridi(fontSize: 20)),
+                                          child: Text("Kembali",
+                                              style: GoogleFonts.pridi(
+                                                  fontSize: 20)),
                                         ),
                                       ],
                                     ),
                                   );
                                 });
                             Tampil.Contain.add(
-                                Budget(_namaJudul, nominal, jenis));
+                                Budget(_namaJudul, nominal, jenis, tanggal));
                           }
                         },
                       ),
