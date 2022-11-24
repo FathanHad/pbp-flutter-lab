@@ -1,7 +1,7 @@
-import 'package:counter_7/drawer.dart';
+import 'package:counter_7/drawer/drawer.dart';
 import 'package:counter_7/main.dart';
 import 'package:flutter/material.dart';
-import 'package:counter_7/data.dart';
+import 'package:counter_7/pages/data.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -161,7 +161,7 @@ class _MyFormPageState extends State<MyFormPage> {
                       label: const Text("Pilih Tanggal")),
                 ),
                 Padding(
-                    padding: const EdgeInsets.only(top: 350),
+                    padding: const EdgeInsets.only(top: 250),
                     child: SizedBox(
                       height: 40,
                       width: 85,

@@ -1,7 +1,7 @@
-import 'package:counter_7/drawer.dart';
+import 'package:counter_7/drawer/drawer.dart';
 import 'package:counter_7/main.dart';
 import 'package:flutter/material.dart';
-import 'package:counter_7/form.dart';
+import 'package:counter_7/pages/form.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyDataPage extends StatefulWidget {

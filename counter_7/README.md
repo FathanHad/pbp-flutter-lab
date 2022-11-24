@@ -201,3 +201,31 @@ body: ListView.builder(
           );
         })
 ```
+
+# TUGAS 9 PBP
+
+## Apakah pengambilan data JSON dapat dilakukan tanpa membuat model terlebih dahulu? Jika iya, apakah lebih baik daripada membuat model sebelum pengambilan data JSON?
+
+Flutter mempunyai library bawaan yaitu code generation library atau lebih tepatnya memakai `json_serializable` yang memungkinkan kita melakukan fetch data dari tipe data json ke flutter tanpa harus membuat model. Penggunaan library ini cocok untuk men-*convert* data json dalam skala menengah ke besar. Namun, jika data yang diolah masih dalam skala kecil, pemakaian model lebih disarankan.
+
+## Widget yang dipakai dan jelaskan fungsinya
+- `Text`, `RichText`, `TextSpan` : memodifikasi weight dan ukuran font dari suatu String
+- `FutureBuilder` : mengolah data hasil konversi dari json
+- `Align`, `Column`, `Padding` : mengatur layout
+- `ListView.Builder` : membuat array widget yang dapat di-scroll.
+
+## Mekanisme Pengambilan data dari json sampai ditampilkan pada flutter
+
+1. Menambahkan dependensi HTTP ke proyek agar dapat melakukan pertukaran data melalui HTTP request
+2. Membuat model sesuai response data yang diterima dari web service
+3. Membuat HTTP request ke web service menggunakan dependensi HTTP
+4. Melakukan konversi dari objek yang didapat ke model yang sudah dibuat
+5. Menampilkan data yang telah dikonversi dengan widget `FutureBuilder`
+
+## Implementasi Checklist
+1. Melakukan refactor file. Proses ini dilakukan untuk meningkatkan keterbacaan, mengurangi kompleksitas kode, dan memudahkan proses maintenance ke depannya.
+2. Buat model menggunakan website Quicktype dengan menggunakan data json dari tugas 3, lalu masukkan kode ke dalam `model/mywatchlist.dart`
+3. Melakukan `flutter pub add http` untuk menambahkan package http beserta import `<uses-permission android:name="android.permission.INTERNET" />` pada direktori `android/app/src/main/AndroidManifest.xml`
+4. Menampilkan judul film menggunakan FutureBuilder dan menyimpan class Field untuk diproses pada page detail
+5. Membuat TextButton pada judul. Jika user menekannya maka akan ternavigasi ke page detail
+6. Mengambil field yang sudah disimpan dengan getter dan menampilkan informasi detail mengenai film yang ditekan. Tambahkan juga tombol back agar dapat ternavigasi kembali ke page mywatchlist.

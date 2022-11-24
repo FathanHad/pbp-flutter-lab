@@ -1,8 +1,7 @@
-import 'package:counter_7/drawer.dart';
+import 'package:counter_7/drawer/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:counter_7/form.dart';
-import 'package:counter_7/data.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'counter_7',
       theme: ThemeData(
         primarySwatch: Colors.green,
+        textTheme: GoogleFonts.pridiTextTheme(Theme.of(context).textTheme),
       ),
       home: const MyHomePage(),
     );
